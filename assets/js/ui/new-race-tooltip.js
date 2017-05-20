@@ -59,6 +59,8 @@ $(document).ready(function() {
             newCharacter = 'Judas';
         } else if (newFormat === 'diversity') {
             newCharacter = 'Judas';
+        } else if (newFormat === 'exclusion') {
+            newCharacter = 'Judas';
         } else if (newFormat === 'custom') {
             // The custom format has no default character, so don't change anything
             newCharacter = $('#new-race-character').val();
@@ -101,6 +103,27 @@ $(document).ready(function() {
             }
             if ($('#new-race-starting-build-container').is(":visible")) {
                 $('#new-race-starting-build-container').fadeOut(globals.fadeTime, function() {
+                    $('#header-new-race').tooltipster('reposition'); // Redraw the tooltip
+                });
+            }
+        }
+
+        // Show or hide the item ban row
+        if (newFormat === 'exclusion') {
+            setTimeout(function() {
+                $('#new-race-character-container').fadeIn(globals.fadeTime);
+                $('#new-race-goal-container').fadeIn(globals.fadeTime);
+                $('#new-race-exclusion-container').fadeIn(globals.fadeTime);
+                $('#header-new-race').tooltipster('reposition'); // Redraw the tooltip
+            }, globals.fadeTime);
+        } else {
+            let type = $('#new-race-type').val();
+            if (type === 'ranked') {
+                $('#new-race-character-container').fadeOut(globals.fadeTime);
+                $('#new-race-goal-container').fadeOut(globals.fadeTime);
+            }
+            if ($('#new-race-exclusion-container').is(":visible")) {
+                $('#new-race-exclusion-container').fadeOut(globals.fadeTime, function() {
                     $('#header-new-race').tooltipster('reposition'); // Redraw the tooltip
                 });
             }
@@ -150,6 +173,40 @@ $(document).ready(function() {
             $('#new-race-starting-build-icon').css('background-image', 'url("assets/img/builds/' + newBuild + '.png")');
             globals.log.info('newBuild2');
         }
+    });
+
+    $('#item-exclusion-nav-button').click(function() {
+        // Close the tooltip (and all error tooltips, if present)
+        misc.closeAllTooltips();
+
+        // load any additional data from globals.itemList if necessary
+        $('#exclusion-item-list').html("");
+        var str = "";
+        for (var i = 1; i <= 525; i++) {
+            if (!!globals.itemList[i]) {
+                str = str + `<button class="exclude-item" type="button"><img src="assets/img/items/${i}.png" data-id="${i}" alt="${globals.itemList[i].name}"></button>`;
+            }
+        }
+        $('#exclusion-item-list').append(str);
+
+        $('#lobby').fadeOut(globals.fadeTime);
+        $('#item-exclusion').fadeIn(globals.fadeTime, function() {
+            globals.currentScreen = 'item-exclusion';
+        });
+    });
+
+    $('#exclusion-item-list').on('click', '.exclude-item', function() {
+        $(this).toggleClass('excluded');
+        let name = $(this).find('img').attr('alt');
+        let blank = $('#exclusion-item-text').text() === "";
+        var list = blank ? [] : $('#exclusion-item-text').text().split(", ");
+        let index = list.indexOf(name);
+        if (index === -1) {
+            list.push(name);
+        } else {
+            list.splice(index, 1);
+        }
+        $('#exclusion-item-text').text(list.join(", "));
     });
 
     $('#new-race-form').submit(function() {

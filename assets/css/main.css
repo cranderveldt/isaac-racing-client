@@ -4185,6 +4185,18 @@
         right: 12px;
     }
 
+    #new-race-exclusion-icon {
+        background-repeat: no-repeat;
+        background-position: bottom center;
+        background-image: url("../img/formats/exclusion.png");
+        display: inline-block;
+        height: 3em;
+        width: 3em;
+        position: relative;
+        bottom: 14px; /* manually found the right value */
+        transform: scale(1.25);
+    }
+
     /*
         Settings tooltip
     */
@@ -4394,6 +4406,56 @@
     #race-chat-text {
         height: 29em;
     }
+
+    /*
+        Exclusion
+    */
+
+    #exclusion-item-box {
+        margin: 1.5em 1.5em 1.5em 1.5em;
+    }
+
+    #exclusion-item-list {
+        display: -ms-flex;
+        display: -webkit-flex;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin: 0 -0.7em;
+    }
+        
+        #exclusion-item-list .exclude-item {
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            padding: 0.4em 0.7em;
+        }
+
+            #exclusion-item-list .exclude-item:hover {
+                opacity: 0.8;
+            }
+
+            #exclusion-item-list .exclude-item:focus,
+            #exclusion-item-list .exclude-item:active {
+                border: 0;
+                outline: none;
+            }
+
+            #exclusion-item-list .exclude-item img {
+                -moz-transform: scale(1.5);
+                -webkit-transform: scale(1.5);
+                -ms-transform: scale(1.5);
+                transform: scale(1.5);
+            }
+
+        #exclusion-item-list .excluded img {
+            -moz-filter: grayscale(100%);
+            -webkit-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            filter: grayscale(100%);
+            opacity: 0.25;
+        }
 
     /*
         Error modal

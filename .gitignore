@@ -41,3 +41,6 @@ jspm_packages
 Racing+.log
 settings.json
 dist
+
+# OS X hidden files
+*.DS_Store

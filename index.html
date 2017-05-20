@@ -479,6 +479,22 @@
                     </section><!-- main -->
                 </div><!-- race -->
 
+                <!-- Item Exclusion -->
+                <div id="item-exclusion" class="hidden">
+                    <section class="main container">
+                        <div class="row">
+                            <div class="12u">
+                                <section id="exclusion-item-box" class="box">
+                                    <p>Click any of the items below to exclude it from all item pools. You can click an item again to unexclude it.</p>
+                                    <p>Excluded items: <span id="exclusion-item-text"></span></p>
+                                    <div id="exclusion-item-list">
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </div><!-- item exclusion -->
+
         </div><!-- page-wrapper -->
 
         <!-- Error modal -->
@@ -588,6 +604,7 @@
                                     <option value="unseeded" selected="selected" lang="en">Unseeded</option>
                                     <option value="seeded" lang="en">Seeded</option>
                                     <option id="new-race-format-diversity" value="diversity" lang="en">Diversity</option>
+                                    <option id="new-race-format-exclusion" value="exclusion" lang="en">Exclusion</option>
                                     <option id="new-race-format-custom" value="custom" lang="en">Custom</option>
                                 </select>
                             </div>
@@ -658,6 +675,20 @@
                                     <option value="random-treasure" lang="en">Random (Treasure Room only, 1-20)</option>
                                 </select>
                             </div>
+                        </div>
+                    </div>
+
+                    <div id="new-race-exclusion-container" class="row uniform 50% hidden">
+                        <div class="2u new-race-note">
+                            <p><span lang="en">Exclusion</span>:</p>
+                        </div>
+                        <div class="2u">
+                            <span id="new-race-exclusion-icon"></span>
+                        </div>
+                        <div class="8u">
+                            <button id="item-exclusion-nav-button" class="button" type="button">
+                                <span lang="en">Exclude Items</span>
+                            </button>
                         </div>
                     </div>
 
@@ -894,6 +925,7 @@
             <img src="assets/img/characters/Samson.png" />
             <img src="assets/img/characters/The Lost.png" />
             <img src="assets/img/formats/diversity.png" />
+            <img src="assets/img/formats/exclusion.png" />
             <img src="assets/img/formats/seeded.png" />
             <img src="assets/img/formats/unseeded.png" />
             <img src="assets/img/goals/Blue Baby.png" />
